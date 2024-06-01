@@ -1,0 +1,83 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}!
+
+{% block title %}
+Posts
+{% endblock title %}
+
+{% block content %}
+    <h1>Все публикации</h1>
+    <form action="" method="get">
+        {{ filterset.form.as_p}}
+        <input type="submit" value="Найти"/>
+    </form>
+    <h3>Количество новостей: {{ posts|length }}</h3>
+    <hr>
+
+    {% if perms.news_project.add_post %}
+    <a href="{% url 'news_create' %}">Добавить новость</a>
+    <a href="{% url 'article_create' %}">Добавить статью</a>
+    {% endif %}
+
+    {% if posts %}
+        <table>
+            <tr>
+                <td>Заголовок</td>
+                <td>Дата публикации</td>
+                <td>Текст</td>
+
+                {% if perms.news_project.change_post or perms.news_project.delete_post %}
+                <td>Действие</td>
+                {% endif %}
+            </tr>
+
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.title|censor }}</td>
+                <td>{{ post.autoDate|date:'d M Y' }}</td>
+                <td>{{ post.postText|truncatechars:20|censor }}</td>
+
+                <td>
+                    {% if post.postType == 'NE' %}
+                        {% if perms.news_project.change_post %}
+                            <a href="{% url 'news_edit' post.id %}">Изменить</a>
+                            <a href="{% url 'news_delete' post.id %}">Удалить</a>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if post.postType == 'AR' %}
+                        {% if perms.news_project.delete_post %}
+                            <a href="{% url 'article_edit' post.id %}">Изменить</a>
+                            <a href="{% url 'article_delete' post.id %}">Удалить</a>
+                        {% endif %}
+                    {% endif %}
+                </td>
+
+            </tr>
+            {% endfor %}
+
+        </table>
+    {% else %}
+        <h2>Публикаций нет!</h2>
+    {% endif %}
+
+    {% if page_obj.has_previous %}
+        <a href="?page=1">1</a>
+        {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?page={{page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+        {% endif %}
+    {% endif %}
+
+    {{ page_obj.number }}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+        {% if paginator.num_pages != page_obj.next_page_number %}
+            ...
+            <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+    {% endif %}
+
+{% endblock content %}

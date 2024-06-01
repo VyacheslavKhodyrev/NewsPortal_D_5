@@ -1,0 +1,13 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}!
+
+{% block title %}
+Post
+{% endblock title %}
+
+{% block content %}
+<h4>Заголовок:</h4><h1>{{ post.title|censor }}</h1>
+<h4>Дата публикации:</h4> <h2>{{ post.autoDate|date:'d.m.Y' }}</h2>
+<h4>Текст:</h4> <h3>{{ post.postText|censor }}</h3>
+{% endblock content %}

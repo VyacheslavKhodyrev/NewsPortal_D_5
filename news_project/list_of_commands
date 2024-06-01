@@ -1,0 +1,119 @@
+python manage.py shell
+
+from news_project.models import *
+from django.contrib.auth.models import User
+from news_project.url.list import title1, text1, title2, text2, title3, text3
+from datetime import datetime
+
+1.
+user1 = User.objects.create_user(username="Ivan")
+user2 = User.objects.create_user(username="Sergey")
+user3 = User.objects.create_user(username="Pyotr")
+user4 = User.objects.create_user(username="Serafim")
+user5 = User.objects.create_user(username="Slava")
+
+2.
+author1 = Author.objects.create(authorUser=user1)
+author2 = Author.objects.create(authorUser=user2)
+
+3.
+Category.objects.create(categoryName='SP')
+Category.objects.create(categoryName='PO')
+Category.objects.create(categoryName='CU')
+Category.objects.create(categoryName='HE')
+
+4.
+Post.objects.create(postAuthor = author1, postType = 'AR', title = title1, postText = text1)
+Post.objects.create(postAuthor = author1, postType = 'AR', title = title2, postText = text2)
+Post.objects.create(postAuthor = author2, postType = 'NE', title = title3, postText = text3)
+
+5.
+Post.objects.get(id=1).postCategory.add(Category.objects.get(id=2))
+Post.objects.get(id=1).postCategory.add(Category.objects.get(id=4))
+Post.objects.get(id=2).postCategory.add(Category.objects.get(id=2))
+Post.objects.get(id=3).postCategory.add(Category.objects.get(id=4))
+
+6.
+Comment.objects.create(commentPost = Post.objects.get(id=2), commentUser = Author.objects.get(id=1).authorUser, commentText = 'Наверное достойные люди.')
+Comment.objects.create(commentPost = Post.objects.get(id=2), commentUser = Author.objects.get(id=1).authorUser, commentText = 'Одни ушли, другие пришли. А порядка как не было так и нет.')
+Comment.objects.create(commentPost = Post.objects.get(id=2), commentUser = Author.objects.get(id=1).authorUser, commentText = 'Одни ушли, другие пришли. А порядка как не было так и нет.')
+Comment.objects.create(commentPost = Post.objects.get(id=3), commentUser = Author.objects.get(id=2).authorUser, commentText = 'А-а-а-а Мы все Умрём а-а-а')
+Comment.objects.create(commentPost = Post.objects.get(id=3), commentUser = Author.objects.get(id=2).authorUser, commentText = 'У-у-у как страшно')
+Comment.objects.create(commentPost = Post.objects.get(id=3), commentUser = Author.objects.get(id=2).authorUser, commentText = 'У-у-у как страшно')
+Comment.objects.create(commentPost = Post.objects.get(id=1), commentUser = Author.objects.get(id=1).authorUser, commentText = 'Путин - наш президент')
+Comment.objects.create(commentPost = Post.objects.get(id=1), commentUser = Author.objects.get(id=1).authorUser, commentText = 'В самое яблочко!')
+
+7.
+Comment.objects.get(id=9).like()
+Comment.objects.get(id=10).dislike()
+Comment.objects.get(id=11).dislike()
+Comment.objects.get(id=12).dislike()
+Comment.objects.get(id=13).dislike()
+Comment.objects.get(id=14).dislike()
+Comment.objects.get(id=15).like()
+Comment.objects.get(id=15).like()
+Comment.objects.get(id=16).like()
+Comment.objects.get(id=16).like()
+Comment.objects.get(id=16).like()
+Comment.objects.get(id=16).like()
+
+Post.objects.get(id=1).like()
+Post.objects.get(id=1).like()
+Post.objects.get(id=1).like()
+Post.objects.get(id=1).like()
+Post.objects.get(id=1).like()
+Post.objects.get(id=1).like()
+Post.objects.get(id=1).like()
+Post.objects.get(id=1).like()
+Post.objects.get(id=2).like()
+Post.objects.get(id=2).dislike()
+Post.objects.get(id=2).like()
+Post.objects.get(id=2).dislike()
+Post.objects.get(id=2).like()
+Post.objects.get(id=2).like()
+Post.objects.get(id=2).dislike()
+Post.objects.get(id=2).like()
+Post.objects.get(id=2).dislike()
+Post.objects.get(id=2).like()
+Post.objects.get(id=2).like()
+Post.objects.get(id=3).dislike()
+Post.objects.get(id=3).dislike()
+Post.objects.get(id=3).dislike()
+Post.objects.get(id=3).like()
+
+8.
+authRating1 = Author.objects.get(id=1)
+authRating1.update_rating()
+authRating1.ratingAuthor
+
+authRating2 = Author.objects.get(id=2)
+authRating2.update_rating()
+authRating2.ratingAuthor
+
+9.
+a = Author.objects.order_by('-ratingAuthor')[:1]
+for i in a:
+     i.ratingAuthor
+     i.authorUser.username
+
+10.
+p = Post.objects.order_by('-postRating')[:1]
+for i in p:
+     print(f'Дата публикации: {i.autoDate.strftime("%Y-%m-%d %H:%M:%S")}')
+     print(f'Автор: {Author.objects.get(id=i.postAuthor_id).authorUser.username}')
+     print(f'Рейтинг: {i.postRating}')
+     print(f'Название: {i.title[2:-2]}')
+     print(f'Текст: {i.preview()[2:]}')
+
+11.
+c = Comment.objects.filter(commentPost_id = 1)
+for i in c:
+     print(f'Дата: {i.commentDate.strftime("%Y-%m-%d %H:%M:%S")}')
+     print(f'Пользователь: {User.objects.get(id=i.commentUser_id).username}')
+     print(f'Рейтинг: {i.commentRating}')
+     print(f'Текст: {i.commentText}')
+
+
+
+
+

@@ -1,0 +1,39 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}!
+
+{% block title %}
+Posts
+{% endblock title %}
+
+{% block content %}
+    <h1>Поиск по публикациям</h1>
+    <hr>
+    <form action="" method="get">
+        {{ filterset.form.as_p}}
+        <input type="submit" value="Найти"/>
+    </form>
+    <h3>Количество новостей: {{ posts|length }}</h3>
+    <hr>
+    {% if posts %}
+       <table>
+           <tr>
+               <td>Заголовок</td>
+               <td>Автор</td>
+               <td>Дата публикации</td>
+               <td>Текст</td>
+           </tr>
+           {% for post in posts %}
+           <tr>
+               <td>{{ post.title|censor }}</td>
+               <td>{{ post.postAuthor }}</td>
+               <td>{{ post.autoDate|date:'d M Y' }}</td>
+               <td>{{ post.postText|truncatechars:20|censor }}</td>
+           </tr>
+           {% endfor %}
+       </table>
+    {% else %}
+       <h2>Публикаций нет!</h2>
+    {% endif %}
+
+{% endblock content %}
