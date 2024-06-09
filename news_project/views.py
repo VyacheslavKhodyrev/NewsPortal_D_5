@@ -1,10 +1,12 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, PostCategory
+from .models import Post, PostCategory, Category
 from .filters import PostFilter
 from .forms import NewsForm, ArticleForm
 from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
 
 class PostsList(ListView):
     model = Post
@@ -48,7 +50,7 @@ class PostsSearch(ListView):
 
 class NewsCreate(PermissionRequiredMixin, CreateView):
     permission_required = 'news_project.news_create'
-    #raise_exception = True
+    # raise_exception = True
     form_class = NewsForm
     model = Post
     template_name = 'create_news.html'
@@ -61,7 +63,7 @@ class NewsCreate(PermissionRequiredMixin, CreateView):
 
 class ArticleCreate(PermissionRequiredMixin, CreateView):
     permission_required = 'news_project.article_create'
-    #raise_exception = True
+    # raise_exception = True
     form_class = ArticleForm
     model = Post
     template_name = 'create_article.html'
@@ -74,7 +76,7 @@ class ArticleCreate(PermissionRequiredMixin, CreateView):
 
 class NewsUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = 'news_project.news_update'
-    #raise_exception = True
+    # raise_exception = True
     form_class = NewsForm
     model = Post
     template_name = 'create_news.html'
@@ -82,7 +84,7 @@ class NewsUpdate(PermissionRequiredMixin, UpdateView):
 
 class ArticleUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = 'news_project.article_update'
-    #raise_exception = True
+    # raise_exception = True
     form_class = ArticleForm
     model = Post
     template_name = 'create_article.html'
@@ -90,7 +92,7 @@ class ArticleUpdate(PermissionRequiredMixin, UpdateView):
 
 class NewsDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'news_project.news_delete'
-    #raise_exception = True
+    # raise_exception = True
     model = Post
     template_name = 'delete_news.html'
     success_url = reverse_lazy('posts_list')
@@ -98,7 +100,34 @@ class NewsDelete(PermissionRequiredMixin, DeleteView):
 
 class ArticleDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'news_project.article_delete'
-    #raise_exception = True
+    # raise_exception = True
     model = Post
     template_name = 'delete_article.html'
     success_url = reverse_lazy('posts_list')
+
+
+class CategoryListView(ListView):
+    model = Post
+    template_name = 'category_list.html'
+    context_object_name = 'category_posts_list'
+
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, id=self.kwargs['pk'])
+        queryset = Post.objects.filter(postCategory=self.category).order_by('-autoDate')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
+        context['category'] = self.category
+        return context
+
+
+@login_required
+def subscribe(request, pk):
+    user = request.user
+    category = Category.objects.get(id=pk)
+    category.subscribers.add(user)
+
+    message = 'Вы успешно подписались на рассылку новостей категории '
+    return render(request, 'subscribe.html', {'category': category, 'message': message})

@@ -1,6 +1,6 @@
 {% extends 'flatpages/default.html' %}
 
-{% load custom_filters %}!
+<!--{% load custom_filters %}!-->
 
 {% block title %}
 Posts
@@ -8,12 +8,16 @@ Posts
 
 {% block content %}
     <h1>Все публикации</h1>
-    <form action="" method="get">
-        {{ filterset.form.as_p}}
-        <input type="submit" value="Найти"/>
-    </form>
+<!--    <form action="" method="get">-->
+<!--        {{ filterset.form.as_p}}-->
+<!--        <input type="submit" value="Найти"/>-->
+<!--    </form>-->
     <h3>Количество новостей: {{ posts|length }}</h3>
     <hr>
+
+    {% if is_not_subscriber %}
+        <p class="text-center"><a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a> </p>
+    {% endif %}
 
     {% if perms.news_project.add_post %}
     <a href="{% url 'news_create' %}">Добавить новость</a>
@@ -34,7 +38,7 @@ Posts
                 {% endif %}
             </tr>
 
-            {% for post in posts %}
+            {% for post in category_posts_list %}
             <tr>
                 <td>{{ post.title|censor }}</td>
                 <td>{{ post.autoDate|date:'d M Y' }}</td>
@@ -45,7 +49,6 @@ Posts
                 {% endfor %}
                 </td>
                 <td>{{ post.postText|truncatechars:20|censor }}</td>
-
 
                 <td>
                     {% if post.postType == 'NE' %}

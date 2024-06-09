@@ -46,6 +46,7 @@ class Category(models.Model):
     ]
 
     categoryName = models.CharField(max_length=2, choices=CATEGORY_TOPIC, default='OTHER', unique=True)
+    subscribers = models.ManyToManyField(User, related_name='categories')
 
     def __str__(self):
         return self.get_categoryName_display()
