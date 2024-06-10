@@ -84,7 +84,7 @@ class Post(models.Model):
         return f'{self.title}: {self.postText[:20]}', self.get_postType_display()
 
     def get_absolute_url(self):
-        return reverse('post_detail', args=[str(self.id)])
+        return f'/posts/{self.id}' #reverse('post_detail', args=[str(self.id)])
 
 
 class PostCategory(models.Model):

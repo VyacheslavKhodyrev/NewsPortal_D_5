@@ -12,19 +12,24 @@ Posts
 <!--        {{ filterset.form.as_p}}-->
 <!--        <input type="submit" value="Найти"/>-->
 <!--    </form>-->
-    <h3>Количество новостей: {{ posts|length }}</h3>
+    <h3>Количество новостей: {{ category_posts_list|length }}</h3>
     <hr>
 
     {% if is_not_subscriber %}
         <p class="text-center"><a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a> </p>
     {% endif %}
 
+    {% if not is_not_subscriber %}
+        <p class="text-center"><a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Отписаться</a> </p>
+    {% endif %}
+
+
     {% if perms.news_project.add_post %}
     <a href="{% url 'news_create' %}">Добавить новость</a>
     <a href="{% url 'article_create' %}">Добавить статью</a>
     {% endif %}
 
-    {% if posts %}
+    {% if category_posts_list %}
         <table>
             <tr>
                 <td>Заголовок</td>
