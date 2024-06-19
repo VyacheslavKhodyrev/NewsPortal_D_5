@@ -1,12 +1,13 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, PostCategory, Category
 from .filters import PostFilter
 from .forms import NewsForm, ArticleForm
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
-
+from .tasks import send_email_task
 
 class PostsList(ListView):
     model = Post
@@ -131,3 +132,9 @@ def subscribe(request, pk):
 
     message = 'Вы успешно подписались на рассылку новостей категории '
     return render(request, 'subscribe.html', {'category': category, 'message': message})
+
+
+class PostView(CreateView):
+    def get(self, request, pk):
+        send_email_task.delay()
+        #return HttpResponse(content='html_content')

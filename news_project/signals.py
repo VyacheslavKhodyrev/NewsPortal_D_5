@@ -26,14 +26,14 @@ def send_notifications(preview, pk, title, subscribers):
     msg.send()
 
 
-@receiver(m2m_changed, sender=PostCategory)
-def notify_about_new_post(sender, instance, **kwargs):
-    if kwargs['action'] == 'post_add':
-        categories = instance.postCategory.all()
-        subscribers: list[str] = []
-        for category in categories:
-            subscribers += category.subscribers.all()
-
-        subscribers = [s.email for s in subscribers]
-
-        send_notifications(instance.preview(), instance.pk, instance.title, subscribers)
+# @receiver(m2m_changed, sender=PostCategory)
+# def notify_about_new_post(sender, post, **kwargs):
+#     if kwargs['action'] == 'post_add':
+#         categories = post.postCategory.all()
+#         subscribers: list[str] = []
+#         for category in categories:
+#             subscribers += category.subscribers.all()
+#
+#         subscribers = [s.email for s in subscribers]
+#
+#         send_notifications(post.preview(), post.pk, post.title, subscribers)
