@@ -59,6 +59,8 @@ class NewsCreate(PermissionRequiredMixin, CreateView):
     def form_valid(self, form):
         news = form.save(commit=False)
         news.postType = 'NE'
+        news.save()
+        send_email_task.delay(news.id)
         return super().form_valid(form)
 
 
@@ -72,6 +74,8 @@ class ArticleCreate(PermissionRequiredMixin, CreateView):
     def form_valid(self, form):
         article = form.save(commit=False)
         article.postType = 'AR'
+        article.save()
+        send_email_task.delay(article.id)
         return super().form_valid(form)
 
 
@@ -134,7 +138,3 @@ def subscribe(request, pk):
     return render(request, 'subscribe.html', {'category': category, 'message': message})
 
 
-class PostView(CreateView):
-    def get(self, request, pk):
-        send_email_task.delay()
-        #return HttpResponse(content='html_content')

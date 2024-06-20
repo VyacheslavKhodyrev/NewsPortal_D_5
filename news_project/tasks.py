@@ -1,7 +1,7 @@
 from celery import shared_task
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from .models import *
 
@@ -14,7 +14,8 @@ def send_email_task(pk):
     subscriber_emails = []
 
     for category in categories:
-        subscriber_emails += list(Category.subscribers.objects.filter(category=category).values_list('user__email', flat=True))
+        subscriber = category.subscribers.all()
+        subscriber_emails += [sub.email for sub in subscriber]
 
     html_content = render_to_string(
         'post_created_email.html',
@@ -36,10 +37,10 @@ def send_email_task(pk):
 @shared_task
 def weekly_send_email_task():
     today = datetime.now()
-    last_week = today - datetime.timedelta(days=7)
-    posts = Post.objects.filter(dateCreation__gte=last_week)
-    categories = set(posts.values_list('postCategory__name', flat=True))
-    subscribers = Category.subscribers.objects.filter(category__name__in=categories)
+    last_week = today - timedelta(days=7)
+    posts = Post.objects.filter(autoDate__gte=last_week)
+    categories = set(posts.values_list('postCategory__categoryName', flat=True))
+    subscribers = User.objects.filter(categories__categoryName__in=categories)
 
     for sub in subscribers:
         html_content = render_to_string(
@@ -47,14 +48,14 @@ def weekly_send_email_task():
             {
                 'link': 'http://127.0.0.1:8000/',
                 'posts': posts,
-                'user': sub.user.username
+                'user': sub.username
             }
         )
         msg = EmailMultiAlternatives(
             subject='Посты за неделю',
             body='',
             from_email=None,
-            to=[sub.user.email],
+            to=[sub.email],
         )
         msg.attach_alternative(html_content, 'text/html')
         msg.send()
