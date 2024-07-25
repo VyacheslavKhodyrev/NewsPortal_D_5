@@ -6,8 +6,11 @@
 Post
 {% endblock title %}
 
+{% load cache %}
+{% cache 60 content %}
 {% block content %}
 <h4>Заголовок:</h4><h1>{{ post.title|censor }}</h1>
 <h4>Дата публикации:</h4> <h2>{{ post.autoDate|date:'d.m.Y' }}</h2>
 <h4>Текст:</h4> <h3>{{ post.postText|censor }}</h3>
 {% endblock content %}
+{% endcache %}

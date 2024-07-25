@@ -8,6 +8,11 @@ from .forms import NewsForm, ArticleForm
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from .tasks import send_email_task
+from django.core.cache import cache
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class PostsList(ListView):
     model = Post
@@ -31,6 +36,15 @@ class PostDetail(DetailView):
     model = Post
     template_name = 'post.html'
     context_object_name = 'post'
+    queryset = Post.objects.all()
+
+    def get_object(self, *args, **kwargs):
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'post-{self.kwargs["pk"]}', obj)
+        return obj
 
 
 class PostsSearch(ListView):

@@ -28,7 +28,8 @@ Posts
     <a href="{% url 'news_create' %}">Добавить новость</a>
     <a href="{% url 'article_create' %}">Добавить статью</a>
     {% endif %}
-
+{% load cache %}
+    {% cache 60 table %}
     {% if category_posts_list %}
         <table>
             <tr>
@@ -78,6 +79,7 @@ Posts
     {% else %}
         <h2>Публикаций нет!</h2>
     {% endif %}
+    {% endcache %}
 
     {% if page_obj.has_previous %}
         <a href="?page=1">1</a>
