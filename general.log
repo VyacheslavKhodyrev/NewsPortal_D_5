@@ -1,0 +1,12 @@
+2024-07-26 08:16:41,147 INFO autoreload Watching for file changes with StatReloader
+2024-07-26 08:18:53,222 INFO autoreload /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/NewsPortal_D_5/NewsPortal/settings.py changed, reloading.
+2024-07-26 08:38:42,860 INFO autoreload Watching for file changes with StatReloader
+2024-07-26 08:38:45,348 WARNING log Not Found: /
+2024-07-26 08:38:45,356 WARNING basehttp "GET / HTTP/1.1" 404 2384
+2024-07-26 08:38:46,676 WARNING log Not Found: /
+2024-07-26 08:38:46,676 WARNING basehttp "GET / HTTP/1.1" 404 2384
+2024-07-26 08:38:49,983 WARNING log Not Found: /
+2024-07-26 08:38:49,984 WARNING basehttp "GET / HTTP/1.1" 404 2384
+2024-07-26 08:49:15,357 WARNING log Not Found: /
+2024-07-26 08:49:15,360 WARNING basehttp "GET / HTTP/1.1" 404 2384
+2024-07-26 08:49:16,008 INFO autoreload /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/NewsPortal_D_5/NewsPortal/settings.py changed, reloading.

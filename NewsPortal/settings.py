@@ -54,6 +54,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -190,33 +191,33 @@ LOGGING = {
     'loggers': {
         'django': {
             'level': 'DEBUG',
-            'handlers': ['console_debug', 'console_warning', 'console_error', 'general', 'errors'],
+            'handlers': ['console_debug', 'console_warning', 'console_error', 'general'],
             'propagate': True,
         },
         'django.request': {
             'handlers': ['errors', 'mail_admins'],
-            'level': 'ERROR',
-            'propagate': False,
+            'level': 'INFO',
+            'propagate': True,
         },
         'django.server': {
-            'level': 'ERROR',
+            'level': 'INFO',
             'handlers': ['errors', 'mail_admins'],
-            'propagate': False,
+            'propagate': True,
         },
         'django.template': {
-            'level': 'ERROR',
+            'level': 'INFO',
             'handlers': ['errors'],
-            'propagate': False,
+            'propagate': True,
         },
         'django.db.backends': {
-            'level': 'ERROR',
+            'level': 'INFO',
             'handlers': ['errors'],
-            'propagate': False,
+            'propagate': True,
         },
         'django.security': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'handlers': ['security'],
-            'propagate': False,
+            'propagate': True,
         },
     },
     'handlers': {
@@ -252,7 +253,7 @@ LOGGING = {
             'formatter': 'form3',
         },
         'security': {
-            'level': 'ERROR',
+            'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'security.log'),
             'formatter': 'form4',
@@ -287,6 +288,10 @@ LOGGING = {
         },
     },
 }
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
 
 
 

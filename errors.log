@@ -1,0 +1,39 @@
+2024-07-26 08:31:13,563 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/autoreload.py None Watching for file changes with StatReloader
+2024-07-26 08:31:52,302 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/autoreload.py None Watching for file changes with StatReloader
+2024-07-26 08:33:19,954 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET /posts/ HTTP/1.1" 200 11490
+2024-07-26 08:33:19,954 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET /posts/ HTTP/1.1" 200 11490
+2024-07-26 08:33:20,225 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/autoreload.py None /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/NewsPortal_D_5/NewsPortal/settings.py changed, reloading.
+2024-07-26 08:33:22,924 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/autoreload.py None Watching for file changes with StatReloader
+2024-07-26 08:34:35,239 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET /posts/ HTTP/1.1" 200 11490
+2024-07-26 08:34:35,239 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET /posts/ HTTP/1.1" 200 11490
+2024-07-26 08:34:35,835 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/autoreload.py None /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/NewsPortal_D_5/NewsPortal/settings.py changed, reloading.
+2024-07-26 08:34:38,533 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/autoreload.py None Watching for file changes with StatReloader
+2024-07-26 08:34:42,902 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET /posts/ HTTP/1.1" 200 11490
+2024-07-26 08:34:42,902 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET /posts/ HTTP/1.1" 200 11490
+2024-07-26 08:34:57,672 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:34:57,672 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:34:57,676 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:34:57,676 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:38:38,852 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:38:38,852 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:38:38,855 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:38:38,855 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:38:39,468 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/autoreload.py None /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/NewsPortal_D_5/NewsPortal/settings.py changed, reloading.
+2024-07-26 08:38:42,860 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/autoreload.py None Watching for file changes with StatReloader
+2024-07-26 08:38:45,348 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:38:45,348 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:38:45,356 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:38:45,356 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:38:46,676 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:38:46,676 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:38:46,676 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:38:46,676 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:38:49,983 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:38:49,983 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:38:49,984 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:38:49,984 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:49:15,357 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:49:15,357 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/log.py None Not Found: /
+2024-07-26 08:49:15,360 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:49:15,360 WARNING /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None "GET / HTTP/1.1" 404 2384
+2024-07-26 08:49:16,008 INFO /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/venv/lib/python3.9/site-packages/django/utils/autoreload.py None /Users/vaceslavhodyrev/PycharmProjects/NewsPortalProject1/NewsPortal_D_5/NewsPortal/settings.py changed, reloading.
